@@ -46,7 +46,7 @@ plt.imshow(denoised_img.astype(int), cmap='gray')
 plt.show()
 
 # Plot difference image
-diff_img = img - denoised_img
+diff_img = noisy_img - denoised_img
 plt.figure(figsize = (10,10))
 plt.imshow(diff_img.astype(int), cmap='gray')
 plt.show()
