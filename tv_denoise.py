@@ -25,6 +25,13 @@ import matplotlib.image as mpimg
 img = scipy.misc.face() # Lena is missing from scipy now :(
 #img = scipy.misc.face()[:,:,0] # For grayscale (red channel only)
 
+# Crop image to square
+(h,w) = img.shape[:2]
+if img.ndim == 2:
+    img = img[:,(w-h)//2:(w+h)//2] 
+else:
+    img = img[:,(w-h)//2:(w+h)//2,:]
+
 # Plot image
 plt.figure(figsize=(10,10))
 plt.imshow(img, cmap='gray')
