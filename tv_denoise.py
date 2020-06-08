@@ -130,6 +130,7 @@ def tv(x):
 #        of total iterations. Type: bool
 def tv_denoise_grayscale(img, lam, max_iter=50, epsilon=1e-3, log=False):
     (m,n) = img.shape
+    N = np.sqrt(m*n) # Geometric mean
     
     if log:
         print("Initial TV =", tv(img))
@@ -151,7 +152,7 @@ def tv_denoise_grayscale(img, lam, max_iter=50, epsilon=1e-3, log=False):
         p -= (tau/lam) * grad_u
         p /= 1 + (tau/lam) * grad_u_norm
         
-        if np.linalg.norm(u_prev - u) < m*n*epsilon:
+        if np.linalg.norm(u_prev - u) < N*epsilon:
             if log:
                 print("Converged at iteration", i)
             break
